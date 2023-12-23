@@ -1,7 +1,9 @@
 {
+  "extends": ["plugin:@nx/typescript", "plugin:angular/johnpapa", "plugin:@nrwl/nx/angular", "plugin:@rx-angular/recommended"],
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nx"],
+  "plugins": ["@nx", "@typescript-eslint", "@angular-eslint", "@rx-angular"],
+  "parser": "@typescript-eslint/parser",
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],

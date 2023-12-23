@@ -12,7 +12,6 @@ describe('UiComponent', () => {
 
     fixture = TestBed.createComponent(UiComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
