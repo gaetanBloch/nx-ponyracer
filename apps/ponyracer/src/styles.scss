@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @use '../../../libs/ui/src/lib/styles/theme' as theme;
 
-//@tailwind base;
-//@tailwind components;
-//@tailwind utilities;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

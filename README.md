@@ -21,6 +21,8 @@ npm install commitizen -g
 commitizen init cz-conventional-changelog --save-dev --save-exact
 npm i -D validate-branch-name \   
   && npx husky add .husky/pre-push "npx --no-install validate-branch-name"
+nx g @nx/angular:setup-tailwind ui
+nx g @nx/angular:setup-tailwind ponyracer
 ```
 
 ## Start the app
