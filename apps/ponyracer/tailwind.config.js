@@ -11,5 +11,8 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-  presets: [require("../../libs/ui/tailwind.config")]
+  presets: [
+    require('../../libs/ui/tailwind.config'),
+    require('@spartan-ng/ui-core/hlm-tailwind-preset'),
+  ],
 };

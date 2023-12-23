@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @use '../../../libs/ui/src/lib/styles/theme' as theme;
+@import '@angular/cdk/overlay-prebuilt.css';
 
 @tailwind base;
 @tailwind components;

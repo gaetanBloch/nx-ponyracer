@@ -1,5 +1,10 @@
 {
-  "extends": ["plugin:@nx/typescript", "plugin:angular/johnpapa", "plugin:@nrwl/nx/angular", "plugin:@rx-angular/recommended"],
+  "extends": [
+    "plugin:@nx/typescript",
+    "plugin:angular/johnpapa",
+    "plugin:@nrwl/nx/angular",
+    "plugin:@rx-angular/recommended"
+  ],
   "root": true,
   "ignorePatterns": ["**/*"],
   "plugins": ["@nx", "@typescript-eslint", "@angular-eslint", "@rx-angular"],

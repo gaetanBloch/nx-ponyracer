@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@geode/components": ["libs/ui/src/index.ts"]
+      "@geode/components": ["libs/ui/src/index.ts"],
+      "@spartan-ng/ui-button-helm": ["libs/ui/src/lib/ui/ui-button-helm/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -10,6 +10,9 @@ bracketSameLine: false
 htmlWhitespaceSensitivity: "css"
 embeddedLanguageFormatting: auto
 singleAttributePerLine: false
+plugins:
+  - prettier-plugin-tailwindcss
+  - prettier-plugin-packagejson
 
 # js and ts rules:
 arrowParens: avoid

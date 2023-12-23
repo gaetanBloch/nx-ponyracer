@@ -5,7 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer components {
   .bg-transparent {
     background-color: transparent;
@@ -18,9 +17,9 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-amber-400 rounded-md;
+  @apply rounded-md bg-amber-400;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-blend-darken rounded-md;
+  @apply rounded-md bg-blend-darken;
 }

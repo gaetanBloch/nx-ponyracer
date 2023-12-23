@@ -7,7 +7,6 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-
 ```bash
 npx create-nx-workspace@latest geode --preset=angular-monorepo
 nx g @nx/angular:library ui --publishable --import-path=@geode/components
@@ -19,10 +18,18 @@ npx git-precommit-checks
 npm install -D @commitlint/cz-commitlint @commitlint/prompt-cli commitizen @commitlint/config-conventional
 npm install commitizen -g
 commitizen init cz-conventional-changelog --save-dev --save-exact
-npm i -D validate-branch-name \   
+npm i -D validate-branch-name \
   && npx husky add .husky/pre-push "npx --no-install validate-branch-name"
 nx g @nx/angular:setup-tailwind ui
 nx g @nx/angular:setup-tailwind ponyracer
+npm i -D @tailwindcss/typography  
+
+
+npm i -D @angular/cdk  
+npm i -D @spartan-ng/cli 
+npm i @spartan-ng/ui-core    
+npx nx g @spartan-ng/cli:ui-theme 
+npx nx g @spartan-ng/cli:ui button
 ```
 
 ## Start the app
