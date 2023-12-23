@@ -5,6 +5,13 @@
   "prefix": "angular-monorepo",
   "sourceRoot": "apps/ponyracer/src",
   "tags": [],
+  "schematics": {
+    "@schematics/angular:component": {
+      "standalone": true,
+      "ChangeDetection": "OnPush",
+      "style": "scss"
+    }
+  },
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
