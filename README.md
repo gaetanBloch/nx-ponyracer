@@ -8,7 +8,8 @@
 npx create-nx-workspace@latest geode --preset=angular-monorepo
 nx g @nx/angular:library ui --publishable --import-path=@geode/components
 npx husky-init && npm install
-
+npm install --save-dev @commitlint/config-conventional @commitlint/cli
+npm install --save-dev prettier@latest prettier-plugin-packagejson  prettier-plugin-tailwindcss rimraf
 ```
 
 ## Start the app

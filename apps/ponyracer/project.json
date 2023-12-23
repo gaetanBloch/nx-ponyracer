@@ -16,10 +16,7 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/ponyracer/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": [
-          "apps/ponyracer/src/favicon.ico",
-          "apps/ponyracer/src/assets"
-        ],
+        "assets": ["apps/ponyracer/src/favicon.ico", "apps/ponyracer/src/assets"],
         "styles": ["apps/ponyracer/src/styles.scss"],
         "scripts": []
       },
