@@ -15,6 +15,7 @@ import { SvgIconService } from './svg-icon.service';
 @Component({
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-svg-icon',
   styleUrls: ['./svg-icon.component.scss'],
   template: `
@@ -66,6 +67,7 @@ export class SvgIconComponent implements OnInit {
         // Set it to the property
         this.sanitizedSvgContent = svg;
         // Trigger the 'detectChanges' method for UI updating
+        // eslint-disable-next-line @rx-angular/no-explicit-change-detection-apis
         this.cdr.detectChanges();
       }
       // // Simple error handling in case of any issue related to icon loading
