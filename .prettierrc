@@ -1,3 +1,16 @@
-{
-  "singleQuote": true
-}
+printWidth: 100
+singleQuote: true
+tabWidth: 2
+useTabs: false
+endOfLine: "lf"
+semi: true
+trailingComma: "all"
+bracketSpacing: true
+bracketSameLine: false
+htmlWhitespaceSensitivity: "css"
+embeddedLanguageFormatting: auto
+singleAttributePerLine: false
+
+# js and ts rules:
+arrowParens: avoid
+
