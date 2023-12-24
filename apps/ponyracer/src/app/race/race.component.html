@@ -1,0 +1,8 @@
+<div>
+  <h2 class="text-amber-500 text-xl">{{ race.name }}</h2>
+  <ul>
+    @for (pony of race.ponies; track pony.name){
+      <li class="ml-2">{{ pony.name }}</li>
+    }
+  </ul>
+</div>
