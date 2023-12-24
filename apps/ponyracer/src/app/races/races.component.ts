@@ -17,5 +17,5 @@ import { RaceService } from '../services/race.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RacesComponent {
-  races$ = inject(RaceService).list();
+  races$ = inject(RaceService).listHttp();
 }

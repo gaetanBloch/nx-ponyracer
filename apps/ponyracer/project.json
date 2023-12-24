@@ -18,17 +18,28 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
-        "localize": ["fr"],
+        "localize": [
+          "fr"
+        ],
         "outputPath": "dist/apps/ponyracer",
         "index": "apps/ponyracer/src/index.html",
         "browser": "apps/ponyracer/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/ponyracer/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/ponyracer/src/favicon.ico", "apps/ponyracer/src/assets"],
-        "styles": ["apps/ponyracer/src/styles.scss"],
+        "assets": [
+          "apps/ponyracer/src/favicon.ico",
+          "apps/ponyracer/src/assets"
+        ],
+        "styles": [
+          "apps/ponyracer/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -50,7 +61,13 @@
         "development": {
           "optimization": false,
           "extractLicenses": false,
-          "sourceMap": true
+          "sourceMap": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/ponyracer/src/environments/environment.ts",
+              "with": "apps/ponyracer/src/environments/environment.development.ts"
+            }
+          ]
         }
       },
       "defaultConfiguration": "production"
@@ -75,11 +92,15 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
+      "outputs": [
+        "{options.outputFile}"
+      ]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/ponyracer/jest.config.ts"
       }
@@ -90,6 +111,13 @@
         "buildTarget": "ponyracer:build",
         "staticFilePath": "dist/apps/ponyracer/browser"
       }
+    }
+  },
+  "generators": {
+    "@schematics/angular:component": {
+      "standalone": true,
+      "ChangeDetection": "OnPush",
+      "style": "scss"
     }
   }
 }

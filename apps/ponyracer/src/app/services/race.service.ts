@@ -1,11 +1,14 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { RaceModel } from '../race.model';
-import { Observable, of } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RaceService {
+  private httpClient = inject(HttpClient);
   list(): Observable<RaceModel[]> {
     return of([
       {
@@ -31,6 +34,10 @@ export class RaceService {
         ],
         startInstant: '2020-02-18T08:03:00Z'
       }
-    ]);
+    ]).pipe(delay(1000));
+  }
+
+  listHttp(): Observable<Array<RaceModel>> {
+    return this.httpClient.get<Array<RaceModel>>(`${environment.apiUrl}/api/races?status=PENDING`);
   }
 }
