@@ -1,8 +1,8 @@
 <div>
   <h2 class="text-amber-500 text-xl">{{ race.name }}</h2>
-  <ul>
+  <ul class="inline-flex">
     @for (pony of race.ponies; track pony.name){
-      <li class="ml-2">{{ pony.name }}</li>
+      <angular-monorepo-pony [pony]="pony"/>
     }
   </ul>
 </div>

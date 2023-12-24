@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RaceModel } from '../race/race.model';
+import { RaceModel } from '../race.model';
 import { RaceComponent } from '../race/race.component';
 
 @Component({
