@@ -1,4 +1,5 @@
 <figure class="m-3 p-3 text-[12px]" (click)="onPonyClicked($event)">
   <img [ngSrc]='imageSource()' width="123" height="99" [alt]='pony.name' [priority]="true"/>
   <figcaption >{{ pony.name }}</figcaption>
+  <span>{{ pony | json }}</span>
 </figure>

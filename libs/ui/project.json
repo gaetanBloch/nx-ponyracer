@@ -5,11 +5,15 @@
   "prefix": "angular-monorepo",
   "tags": [],
   "projectType": "library",
+  "i18n": {
+    "sourceLocale": "fr"
+  },
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
+        "localize": ["fr"],
         "project": "libs/ui/ng-package.json",
         "tailwindConfig": "libs/ui/tailwind.config.js",
         "assets": [

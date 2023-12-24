@@ -3,7 +3,8 @@ import {
   Attribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component, HostBinding,
+  Component,
+  HostBinding,
   Input,
   OnInit
 } from '@angular/core';
@@ -23,10 +24,6 @@ import { SvgIconService } from './svg-icon.service';
 })
 export class SvgIconComponent implements OnInit {
   @Input({ required: true }) public icon!: string;
-  @HostBinding('class') get classAttribute(): string {
-    return this.classNames ? this.classNames : '';
-  }
-
   public sanitizedSvgContent!: SafeHtml;
 
   constructor(
@@ -36,6 +33,10 @@ export class SvgIconComponent implements OnInit {
     private http: HttpClient,
     private svgIconService: SvgIconService
   ) {}
+
+  @HostBinding('class') get classAttribute(): string {
+    return this.classNames ? this.classNames : '';
+  }
 
   public ngOnInit(): void {
     this.loadSvg();
@@ -62,16 +63,16 @@ export class SvgIconComponent implements OnInit {
     const cachedSvg$ = this.svgIconService.svgIconMap.get(svgPath);
 
     // Subscribe to the Observable to get the content
-    cachedSvg$?.subscribe(
-      (svg) => {
-        // Set it to the property
-        this.sanitizedSvgContent = svg;
-        // Trigger the 'detectChanges' method for UI updating
-        // eslint-disable-next-line @rx-angular/no-explicit-change-detection-apis
-        this.cdr.detectChanges();
+    cachedSvg$?.subscribe({
+        next: (svg) => {
+          // Set it to the property
+          this.sanitizedSvgContent = svg;
+          // Trigger the 'detectChanges' method for UI updating
+          // eslint-disable-next-line @rx-angular/no-explicit-change-detection-apis
+          this.cdr.detectChanges();
+        },
+        error: (error) => console.error(`Error loading SVG`, error)
       }
-      // // Simple error handling in case of any issue related to icon loading
-      // (error) => console.error(`Error loading SVG`, error),
     );
   }
 }

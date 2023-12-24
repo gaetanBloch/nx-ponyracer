@@ -1,4 +1,4 @@
-@for (race of races; track race.id) {
+@for (race of races$ | async; track race.id) {
   <div>
     <angular-monorepo-race [race]="race" />
   </div>

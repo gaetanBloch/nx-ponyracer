@@ -12,11 +12,15 @@
       "style": "scss"
     }
   },
+  "i18n": {
+    "sourceLocale": "fr"
+  },
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "localize": ["fr"],
         "outputPath": "dist/apps/ponyracer",
         "index": "apps/ponyracer/src/index.html",
         "browser": "apps/ponyracer/src/main.ts",

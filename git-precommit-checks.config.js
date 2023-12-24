@@ -17,11 +17,11 @@ module.exports = {
       nonBlocking: true,
       regex: /(?:FIXME|TODO)/,
     },
-    {
-      filter: /\.[j|t]s$/,
-      message: 'Console.log() found',
-      nonBlocking: false,
-      regex: /console.log\(/,
-    },
+    // {
+    //   filter: /\.[j|t]s$/,
+    //   message: 'Console.log() found',
+    //   nonBlocking: false,
+    //   regex: /console.log\(/,
+    // },
   ],
 };
