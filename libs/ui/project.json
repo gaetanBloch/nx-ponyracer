@@ -16,9 +16,7 @@
         "localize": ["fr"],
         "project": "libs/ui/ng-package.json",
         "tailwindConfig": "libs/ui/tailwind.config.js",
-        "assets": [
-          "libs/ui/src/assets"
-        ]
+        "assets": ["libs/ui/src/assets"]
       },
       "configurations": {
         "production": {

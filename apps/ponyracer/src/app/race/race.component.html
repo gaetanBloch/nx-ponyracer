@@ -1,10 +1,10 @@
 <div>
-  <h2 class="text-amber-500 text-xl">{{ race.name }}</h2>
+  <h2 class="text-xl text-amber-500">{{ race.name }}</h2>
   <span>{{ race.startInstant | fromNow }}</span>
-  <p>{{ race.startInstant | date:'short' }}</p>
+  <p>{{ race.startInstant | date: 'short' }}</p>
   <ul class="inline-flex">
-    @for (pony of race.ponies; track pony.name){
-      <angular-monorepo-pony [pony]="pony"/>
+    @for (pony of race.ponies; track pony.name) {
+      <angular-monorepo-pony [pony]="pony" />
     }
   </ul>
 </div>

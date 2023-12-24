@@ -1,16 +1,16 @@
 :host {
-    display: inline-block;
-    height: 18px;
-    width: 18px;
-    color: inherit;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  color: inherit;
 }
 
 div {
-    &::ng-deep svg {
-        display: block;
-        height: 100%;
-        width: 100%;
-        color: inherit;
-        fill: currentColor;
-    }
+  &::ng-deep svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+    color: inherit;
+    fill: currentColor;
+  }
 }

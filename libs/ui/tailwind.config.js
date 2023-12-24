@@ -1,7 +1,7 @@
 const { createGlobPatternsForDependencies } = require('@nx/angular/tailwind');
 const { join } = require('path');
 const typographyStyles = require('../../typography');
-import typographyPlugin from '@tailwindcss/typography'
+import typographyPlugin from '@tailwindcss/typography';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

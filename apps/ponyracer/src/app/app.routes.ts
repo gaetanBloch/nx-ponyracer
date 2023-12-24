@@ -6,13 +6,11 @@ export const appRoutes: Route[] = [
   {
     path: '',
     component: HomeComponent,
-    providers: [
-    ],
+    providers: [],
   },
   {
     path: 'races',
     component: RacesComponent,
-    providers: [
-    ],
+    providers: [],
   },
 ];

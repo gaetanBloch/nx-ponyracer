@@ -3,7 +3,8 @@ import {
   HttpEvent,
   HttpHandlerFn,
   HttpInterceptorFn,
-  HttpRequest, HttpStatusCode
+  HttpRequest,
+  HttpStatusCode,
 } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { ErrorHandler, inject } from '@angular/core';
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 
 export const errorHandlerInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
-  next: HttpHandlerFn
+  next: HttpHandlerFn,
 ): Observable<HttpEvent<unknown>> => {
   const router = inject(Router);
   const errorHandler = inject(ErrorHandler);
@@ -27,7 +28,7 @@ export const errorHandlerInterceptor: HttpInterceptorFn = (
           // else we notify the user
           errorHandler.handleError(errorResponse);
         }
-      }
-    })
+      },
+    }),
   );
 };

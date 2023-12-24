@@ -6,7 +6,7 @@ import {
   Component,
   HostBinding,
   Input,
-  OnInit
+  OnInit,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { map, shareReplay } from 'rxjs/operators';
@@ -19,8 +19,7 @@ import { SvgIconService } from './svg-icon.service';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-svg-icon',
   styleUrls: ['./svg-icon.component.scss'],
-  template: `
-    <div [innerHTML]="sanitizedSvgContent" [class]="classNames"></div>`
+  template: ` <div [innerHTML]="sanitizedSvgContent" [class]="classNames"></div>`,
 })
 export class SvgIconComponent implements OnInit {
   @Input({ required: true }) public icon!: string;
@@ -31,7 +30,7 @@ export class SvgIconComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private sanitizer: DomSanitizer,
     private http: HttpClient,
-    private svgIconService: SvgIconService
+    private svgIconService: SvgIconService,
   ) {}
 
   @HostBinding('class') get classAttribute(): string {
@@ -46,13 +45,13 @@ export class SvgIconComponent implements OnInit {
     // Exit from the method in case of icon absence
     if (!this.icon) return;
     // Construct your path to an icon
-    const svgPath = `assets/icons/svg/${ this.icon }.svg`;
+    const svgPath = `assets/icons/svg/${this.icon}.svg`;
 
     // Check if the icon is already cached
     if (!this.svgIconService.svgIconMap.has(svgPath)) {
       const svg$ = this.http.get(svgPath, { responseType: 'text' }).pipe(
-        map((svg) => this.sanitizer.bypassSecurityTrustHtml(svg)),
-        shareReplay(1)
+        map(svg => this.sanitizer.bypassSecurityTrustHtml(svg)),
+        shareReplay(1),
       );
 
       // Cache the result: iconName as a key and Observable as a value
@@ -64,15 +63,14 @@ export class SvgIconComponent implements OnInit {
 
     // Subscribe to the Observable to get the content
     cachedSvg$?.subscribe({
-        next: (svg) => {
-          // Set it to the property
-          this.sanitizedSvgContent = svg;
-          // Trigger the 'detectChanges' method for UI updating
-          // eslint-disable-next-line @rx-angular/no-explicit-change-detection-apis
-          this.cdr.detectChanges();
-        },
-        error: (error) => console.error(`Error loading SVG`, error)
-      }
-    );
+      next: svg => {
+        // Set it to the property
+        this.sanitizedSvgContent = svg;
+        // Trigger the 'detectChanges' method for UI updating
+        // eslint-disable-next-line @rx-angular/no-explicit-change-detection-apis
+        this.cdr.detectChanges();
+      },
+      error: error => console.error(`Error loading SVG`, error),
+    });
   }
 }

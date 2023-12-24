@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RaceService {
   private httpClient = inject(HttpClient);
@@ -19,10 +19,11 @@ export class RaceService {
           { id: 2, name: 'Big Soda', color: 'ORANGE' },
           { id: 3, name: 'Gentle Bottle', color: 'PURPLE' },
           { id: 4, name: 'Superb Whiskey', color: 'GREEN' },
-          { id: 5, name: 'Fast Rainbow', color: 'BLUE' }
+          { id: 5, name: 'Fast Rainbow', color: 'BLUE' },
         ],
-        startInstant: '2020-02-18T08:02:00Z'
-      }, {
+        startInstant: '2020-02-18T08:02:00Z',
+      },
+      {
         id: 13,
         name: 'Tokyo',
         ponies: [
@@ -30,10 +31,10 @@ export class RaceService {
           { id: 7, name: 'Gentle Castle', color: 'GREEN' },
           { id: 8, name: 'Awesome Rock', color: 'PURPLE' },
           { id: 9, name: 'Little Rainbow', color: 'YELLOW' },
-          { id: 10, name: 'Great Soda', color: 'ORANGE' }
+          { id: 10, name: 'Great Soda', color: 'ORANGE' },
         ],
-        startInstant: '2020-02-18T08:03:00Z'
-      }
+        startInstant: '2020-02-18T08:03:00Z',
+      },
     ]).pipe(delay(1000));
   }
 

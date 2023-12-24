@@ -22,13 +22,13 @@ npm i -D validate-branch-name \
   && npx husky add .husky/pre-push "npx --no-install validate-branch-name"
 nx g @nx/angular:setup-tailwind ui
 nx g @nx/angular:setup-tailwind ponyracer
-npm i -D @tailwindcss/typography  
+npm i -D @tailwindcss/typography
 
 
-npm i -D @angular/cdk  
-npm i -D @spartan-ng/cli 
-npm i @spartan-ng/ui-core    
-npx nx g @spartan-ng/cli:ui-theme 
+npm i -D @angular/cdk
+npm i -D @spartan-ng/cli
+npm i @spartan-ng/ui-core
+npx nx g @spartan-ng/cli:ui-theme
 npx nx g @spartan-ng/cli:ui button
 ```
 

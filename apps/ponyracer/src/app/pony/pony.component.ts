@@ -8,7 +8,7 @@ import { LoggingService } from '../services/logging.service';
   standalone: true,
   imports: [CommonModule, NgOptimizedImage],
   templateUrl: './pony.component.html',
-  styleUrl: './pony.component.scss'
+  styleUrl: './pony.component.scss',
 })
 export class PonyComponent {
   @Input({ required: true }) pony!: PonyModel;
@@ -16,11 +16,15 @@ export class PonyComponent {
   logging = inject(LoggingService);
 
   imageSource(): string {
-    return `/assets/images/pony-${ this.pony.color.toLowerCase() }.gif`;
+    return `/assets/images/pony-${this.pony.color.toLowerCase()}.gif`;
   }
 
   onPonyClicked(pEvent: MouseEvent) {
-    this.logging.log(`PonyComponent - onPonyClicked() - ${ this.pony.name + ' - src: ' + (pEvent.target as HTMLImageElement).src}`);
+    this.logging.log(
+      `PonyComponent - onPonyClicked() - ${
+        this.pony.name + ' - src: ' + (pEvent.target as HTMLImageElement).src
+      }`,
+    );
     this.ponyClicked.emit(this.pony);
   }
 }
