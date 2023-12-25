@@ -16,7 +16,11 @@
     "baseUrl": ".",
     "paths": {
       "@geode/components": ["libs/ui/src/index.ts"],
-      "@spartan-ng/ui-button-helm": ["libs/ui/src/lib/ui/ui-button-helm/src/index.ts"]
+      "@spartan-ng/ui-button-helm": ["libs/ui/src/lib/ui/ui-button-helm/src/index.ts"],
+      "@spartan-ng/ui-input-helm": ["libs/ui/src/lib/ui/ui-input-helm/src/index.ts"],
+      "@spartan-ng/ui-label-helm": ["libs/ui/src/lib/ui/ui-label-helm/src/index.ts"],
+      "@spartan-ng/ui-alert-helm": ["libs/ui/src/lib/ui/ui-alert-helm/src/index.ts"],
+      "@spartan-ng/ui-icon-helm": ["libs/ui/src/lib/ui/ui-icon-helm/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

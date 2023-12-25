@@ -30,6 +30,10 @@ npm i -D @spartan-ng/cli
 npm i @spartan-ng/ui-core
 npx nx g @spartan-ng/cli:ui-theme
 npx nx g @spartan-ng/cli:ui button
+npx nx g @spartan-ng/cli:ui label
+npx nx g @spartan-ng/cli:ui input
+
+npm i ngx-valdemort
 ```
 
 ## Start the app

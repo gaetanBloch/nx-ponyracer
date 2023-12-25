@@ -1,0 +1,13 @@
+{
+  "name": "@spartan-ng/ui-icon-helm",
+  "version": "0.0.1",
+  "sideEffects": false,
+  "dependencies": {
+    "@angular/common": "~17.0.0",
+    "@ng-icons/core": "^25.1.0"
+  },
+  "peerDependencies": {
+    "@angular/common": "^17.0.0",
+    "@angular/core": "^17.0.0"
+  }
+}

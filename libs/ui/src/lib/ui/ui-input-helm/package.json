@@ -1,0 +1,9 @@
+{
+  "name": "@spartan-ng/ui-input-helm",
+  "version": "0.0.1",
+  "sideEffects": false,
+  "dependencies": {},
+  "peerDependencies": {
+    "@angular/core": "^17.0.0"
+  }
+}

@@ -20,7 +20,6 @@
                     class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700"
                     routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: true }"
-                    aria-current="page"
                     >PonyRacer</a
                   >
                   <a
@@ -29,6 +28,12 @@
                     class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700"
                     #route="routerLinkActive"
                     >Races {{ route.isActive ? '(here)' : '' }}</a
+                  >
+                  <a
+                    routerLink="/register"
+                    routerLinkActive="active"
+                    class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700"
+                    >Register</a
                   >
                 </div>
               </div>
@@ -183,6 +188,29 @@
       </div>
     </header>
   </div>
+
+  <val-default-errors>
+    <ng-template valError="required" let-label>
+      {{ label || 'This field' }} is required
+    </ng-template>
+    <ng-template valError="email" let-label>
+      {{ label || 'This field' }} must be a valid email address
+    </ng-template>
+    <ng-template valError="min" let-error="error" let-label>
+      {{ label || 'This field' }} must be at least {{ error.min | number }}
+    </ng-template>
+    <ng-template valError="max" let-error="error" let-label>
+      {{ label || 'This field' }} must be at most {{ error.max | number }}
+    </ng-template>
+    <ng-template valError="minlength" let-error="error" let-label>
+      {{ label || 'This field' }} must be at least {{ error.requiredLength | number }} characters
+      long
+    </ng-template>
+    <ng-template valError="maxlength" let-error="error" let-label>
+      {{ label || 'This field' }} must be at most {{ error.maxLength | number }} characters long
+    </ng-template>
+    <!-- same for the other types of error -->
+  </val-default-errors>
 
   <main class="-mt-32">
     <div class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">

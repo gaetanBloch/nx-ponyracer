@@ -1,0 +1,51 @@
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+  <label hlmLabel>
+    Login
+    <input hlmInput formControlName="login" type="text" />
+    <val-errors controlName="login" class="mt-2 block text-red-600" label="Login" />
+  </label>
+  <div formGroupName="passwordGroup">
+    <label hlmLabel>
+      Password
+      <input hlmInput formControlName="password" type="password" />
+      <val-errors controlName="password" class="mt-2 block text-red-600" label="Password" />
+    </label>
+    <label hlmLabel>
+      Confirm Password
+      <input hlmInput formControlName="confirmPassword" type="password" />
+      <val-errors
+        controlName="confirmPassword"
+        class="mt-2 block text-red-600"
+        label="Confirm Password"
+      />
+    </label>
+    @if (passwordGroup.dirty && passwordGroup.hasError('matchingError')) {
+      <div class="mt-2 text-sm text-red-600">Your password does not match</div>
+    }
+  </div>
+  <label hlmLabel>
+    Birth Year
+    <input hlmInput formControlName="birthYear" type="number" />
+    <val-errors controlName="birthYear" class="mt-2 block text-red-600" label="Birth Year" />
+    @if (birthYearCtrl.dirty && birthYearCtrl.hasError('invalidYear')) {
+      <div class="font mt-2 text-sm text-red-600">This is not valid year</div>
+    }
+  </label>
+  <button
+    hlmBtn
+    variant="default"
+    size="lg"
+    class="mt-5"
+    type="submit"
+    [disabled]="!registerForm.valid"
+  >
+    Let's go
+  </button>
+</form>
+@if (registrationFailed()) {
+  <div class="mt-5" hlmAlert variant="destructive">
+    <hlm-icon hlmAlertIcon name="radixExclamationTriangle" />
+    <h4 hlmAlertTitle>Registration Error</h4>
+    <p hlmAlertDesc>Try again with another login</p>
+  </div>
+}

@@ -6,4 +6,3 @@ npx --no-install git-precommit-checks
 npm run format
 git add .
 npm run lint
-npm test

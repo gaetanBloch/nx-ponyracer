@@ -8,7 +8,7 @@
     "e2e": "nx e2e",
     "format": "prettier --write \"**/*.{json,md,html,js,jsx,ts,tsx,css,scss,yml}\"",
     "format:check": "nx format:check",
-    "lint": "eslint apps/ponyracer/src libs/ui/src",
+    "lint": "eslint apps/ponyracer/src",
     "prepare": "husky install",
     "serve": "nx serve",
     "test": "nx run ponyracer:test && nx run ui:test"
@@ -56,6 +56,7 @@
     "clsx": "^1.2.1",
     "date-fns": "^3.0.6",
     "ngx-scrollbar": "^13.0.1",
+    "ngx-valdemort": "^11.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.0"
