@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   AbstractControl,
@@ -67,6 +67,7 @@ interface RegisterForm {
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
   providers: [provideIcons({ radixExclamationTriangle })],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent {
   fb = inject(NonNullableFormBuilder);

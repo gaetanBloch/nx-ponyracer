@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 import { RacesComponent } from './races/races.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 export const appRoutes: Route[] = [
   {
@@ -17,6 +18,11 @@ export const appRoutes: Route[] = [
   {
     path: 'register',
     component: RegisterComponent,
+    providers: [],
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
     providers: [],
   },
 ];

@@ -17,4 +17,11 @@ export class UserService {
       birthYear,
     });
   }
+
+  login(login: string, password: string): Observable<User> {
+    return this.httpClient.post<User>(`${environment.apiUrl}/api/users/authentication`, {
+      login,
+      password,
+    });
+  }
 }
