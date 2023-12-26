@@ -2,19 +2,19 @@
   <div>
     <label hlmLabel>
       <span>First name</span>
-      <input type="text" [(ngModel)]="formValue.firstName" name="firstName" hlmInput />
+      <input type="text" [ngModel]="formValue().firstName" name="firstName" hlmInput />
     </label>
   </div>
   <div>
     <label hlmLabel>
       <span>Last name</span>
-      <input type="text" [(ngModel)]="formValue.lastName" name="lastName" hlmInput />
+      <input type="text" [ngModel]="formValue().lastName" name="lastName" hlmInput />
     </label>
   </div>
   <div>
     <label hlmLabel>
       <span>Age</span>
-      <input type="number" [(ngModel)]="formValue.age" name="age" hlmInput />
+      <input type="number" [ngModel]="formValue().age" name="age" hlmInput />
     </label>
   </div>
   <div>
@@ -23,7 +23,7 @@
       class="mb-4 space-y-1 font-mono text-sm font-medium"
       hlmRadioGroup
       name="gender"
-      [(ngModel)]="formValue.gender"
+      [ngModel]="formValue().gender"
     >
       <brn-radio hlmRadio value="male">
         <hlm-radio-indicator indicator />
@@ -42,7 +42,7 @@
   <div>
     <label hlmLabel>
       <span>Products</span>
-      <select hlmInput class="w-56" name="productId" [(ngModel)]="formValue.productId">
+      <select hlmInput class="w-56" name="productId" [ngModel]="formValue().productId">
         @for (product of products(); track product.id) {
           <option [value]="product.id">{{ product.name }}</option>
         }
@@ -54,7 +54,7 @@
       <span>Emergency contact</span>
       <input
         type="text"
-        [(ngModel)]="formValue.emergencyContact"
+        [ngModel]="formValue().emergencyContact"
         name="emergencyContact"
         hlmInput
       />
@@ -63,7 +63,7 @@
   <div ngModelGroup="passwords" class="flex flex-col gap-3">
     <label hlmLabel>
       Password
-      <input hlmInput type="password" name="password" [(ngModel)]="formValue.passwords.password" />
+      <input hlmInput type="password" name="password" [ngModel]="formValue().passwords?.password" />
     </label>
     <label hlmLabel>
       Confirm password
@@ -71,29 +71,29 @@
         hlmInput
         type="password"
         name="confirmPassword"
-        [(ngModel)]="formValue.passwords.confirmPassword"
+        [ngModel]="formValue().passwords?.confirmPassword"
       />
     </label>
   </div>
   <div ngModelGroup="addresses">
     <div ngModelGroup="shippingAddress">
       <span hlmLarge>Shipping Address</span>
-      <angular-monorepo-address [address]="formValue.addresses.shippingAddress" />
+      <angular-monorepo-address [address]="formValue().addresses?.shippingAddress" />
     </div>
     <label hlmLabel class="mt-3 flex items-center">
       <brn-checkbox
         hlmCheckbox
         name="shippingSameAsBilling"
-        [(ngModel)]="formValue.addresses.shippingSameAsBilling"
+        [ngModel]="formValue().addresses?.shippingSameAsBilling"
       >
         <hlm-checkbox-checkicon />
       </brn-checkbox>
       <span hlmSmall class="ml-2">Billing Address same as Shipping Address ?</span>
     </label>
-    @if (!formValue.addresses.shippingSameAsBilling) {
+    @if (!formValue().addresses?.shippingSameAsBilling) {
       <div ngModelGroup="billingAddress" class="mt-3">
         <span hlmLarge>Billing Address</span>
-        <angular-monorepo-address [address]="formValue.addresses.billingAddress" />
+        <angular-monorepo-address [address]="formValue().addresses?.billingAddress" />
       </div>
     }
   </div>
@@ -103,5 +103,5 @@
   </div>
 </form>
 <pre>
-  {{ formValue | json }}
+  {{ formValue() | json }}
 </pre>

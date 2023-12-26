@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, inject, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
@@ -18,23 +18,23 @@ import { AddressComponent } from '../address/address.component';
 import { BrnCheckboxComponent } from '@spartan-ng/ui-checkbox-brain';
 import { HlmCheckboxCheckIconComponent, HlmCheckboxDirective } from '@spartan-ng/ui-checkbox-helm';
 
-type FormModel = {
-  firstName?: string;
-  lastName?: string;
-  age?: number;
-  emergencyContact?: string;
-  passwords: {
-    password?: string;
-    confirmPassword?: string;
-  };
+type FormModel = Partial<{
+  firstName: string;
+  lastName: string;
+  age: number;
+  emergencyContact: string;
+  passwords: Partial<{
+    password: string;
+    confirmPassword: string;
+  }>;
   gender: 'male' | 'female' | 'other';
-  productId?: string;
-  addresses: {
+  productId: string;
+  addresses: Partial<{
     shippingAddress: AddressModel;
     billingAddress: AddressModel;
     shippingSameAsBilling?: boolean;
-  };
-};
+  }>;
+}>;
 
 @Component({
   selector: 'angular-monorepo-simple',
@@ -61,18 +61,20 @@ type FormModel = {
   styleUrl: './simple.component.scss',
   providers: [ProductService],
 })
-export class SimpleComponent {
+export class SimpleComponent implements AfterViewInit {
   @ViewChild('form') protected ngForm!: NgForm;
   private readonly productService = inject(ProductService);
   public readonly products = toSignal(this.productService.getAll());
-  protected formValue: FormModel = {
-    passwords: {},
-    addresses: {
-      shippingAddress: {},
-      billingAddress: {},
-    },
-    gender: 'male',
-  };
+
+  protected readonly formValue = signal<FormModel>({});
+
+  public ngAfterViewInit() {
+    // When the form is ready
+    this.ngForm!.form.valueChanges.subscribe(value => {
+      // Set our partial form value
+      this.formValue.set(value);
+    });
+  }
 
   logForm() {
     console.log(this.ngForm);

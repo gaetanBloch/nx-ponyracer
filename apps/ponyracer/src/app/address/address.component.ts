@@ -15,5 +15,5 @@ import { templateDrivenFormsViewProviders } from '../simple-form/template-driven
   styleUrl: './address.component.scss',
 })
 export class AddressComponent {
-  @Input({ required: true }) address!: AddressModel;
+  @Input({ required: true }) address?: AddressModel;
 }
