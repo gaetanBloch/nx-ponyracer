@@ -131,7 +131,6 @@ export class RegisterComponent {
 
   static yearValid(control: AbstractControl): ValidationErrors | null {
     const year = control.value;
-    console.log(year);
     return year >= 1900 && year <= new Date().getFullYear() ? null : { invalidYear: true };
   }
 

@@ -1,20 +1,30 @@
-<form #form="ngForm" class="flex flex-col gap-3" (ngSubmit)="logForm()">
+<form
+  #form="ngForm"
+  class="flex flex-col gap-3"
+  (ngSubmit)="logForm()"
+  (formValueChange)="formValue.set($event)"
+  (validChange)="formValid.set($event)"
+  (dirtyChange)="formDirty.set($event)"
+>
+  Form is valid: {{ formValid() }}
+  <br />
+  Form is dirty: {{ formDirty() }}
   <div>
     <label hlmLabel>
       <span>First name</span>
-      <input type="text" [ngModel]="formValue().firstName" name="firstName" hlmInput />
+      <input type="text" [ngModel]="vm.formValue.firstName" name="firstName" hlmInput />
     </label>
   </div>
   <div>
     <label hlmLabel>
       <span>Last name</span>
-      <input type="text" [ngModel]="formValue().lastName" name="lastName" hlmInput />
+      <input type="text" [ngModel]="vm.formValue.lastName" name="lastName" hlmInput />
     </label>
   </div>
   <div>
     <label hlmLabel>
       <span>Age</span>
-      <input type="number" [ngModel]="formValue().age" name="age" hlmInput />
+      <input type="number" [ngModel]="vm.formValue.age" name="age" hlmInput />
     </label>
   </div>
   <div>
@@ -23,7 +33,7 @@
       class="mb-4 space-y-1 font-mono text-sm font-medium"
       hlmRadioGroup
       name="gender"
-      [ngModel]="formValue().gender"
+      [ngModel]="vm.formValue.gender"
     >
       <brn-radio hlmRadio value="male">
         <hlm-radio-indicator indicator />
@@ -39,10 +49,18 @@
       </brn-radio>
     </brn-radio-group>
   </div>
+  @if (vm.genderOther) {
+    <div>
+      <label hlmLabel>
+        <span>Other gender</span>
+        <input type="text" [ngModel]="vm.formValue.genderOther" name="genderOther" hlmInput />
+      </label>
+    </div>
+  }
   <div>
     <label hlmLabel>
       <span>Products</span>
-      <select hlmInput class="w-56" name="productId" [ngModel]="formValue().productId">
+      <select hlmInput class="w-56" name="productId" [ngModel]="vm.formValue.productId">
         @for (product of products(); track product.id) {
           <option [value]="product.id">{{ product.name }}</option>
         }
@@ -54,16 +72,22 @@
       <span>Emergency contact</span>
       <input
         type="text"
-        [ngModel]="formValue().emergencyContact"
+        [ngModel]="vm.formValue.emergencyContact"
         name="emergencyContact"
         hlmInput
+        [disabled]="vm.overEighteen"
       />
     </label>
   </div>
   <div ngModelGroup="passwords" class="flex flex-col gap-3">
     <label hlmLabel>
       Password
-      <input hlmInput type="password" name="password" [ngModel]="formValue().passwords?.password" />
+      <input
+        hlmInput
+        type="password"
+        name="password"
+        [ngModel]="vm.formValue.passwords?.password"
+      />
     </label>
     <label hlmLabel>
       Confirm password
@@ -71,29 +95,29 @@
         hlmInput
         type="password"
         name="confirmPassword"
-        [ngModel]="formValue().passwords?.confirmPassword"
+        [ngModel]="vm.formValue.passwords?.confirmPassword"
       />
     </label>
   </div>
   <div ngModelGroup="addresses">
     <div ngModelGroup="shippingAddress">
       <span hlmLarge>Shipping Address</span>
-      <angular-monorepo-address [address]="formValue().addresses?.shippingAddress" />
+      <angular-monorepo-address [address]="vm.formValue.addresses?.shippingAddress" />
     </div>
     <label hlmLabel class="mt-3 flex items-center">
       <brn-checkbox
         hlmCheckbox
         name="shippingSameAsBilling"
-        [ngModel]="formValue().addresses?.shippingSameAsBilling"
+        [ngModel]="vm.formValue.addresses?.shippingSameAsBilling"
       >
         <hlm-checkbox-checkicon />
       </brn-checkbox>
       <span hlmSmall class="ml-2">Billing Address same as Shipping Address ?</span>
     </label>
-    @if (!formValue().addresses?.shippingSameAsBilling) {
+    @if (!vm.billingSameAsShipping) {
       <div ngModelGroup="billingAddress" class="mt-3">
         <span hlmLarge>Billing Address</span>
-        <angular-monorepo-address [address]="formValue().addresses?.billingAddress" />
+        <angular-monorepo-address [address]="vm.formValue.addresses?.billingAddress" />
       </div>
     }
   </div>
@@ -103,5 +127,5 @@
   </div>
 </form>
 <pre>
-  {{ formValue() | json }}
+  {{ vm.formValue | json }}
 </pre>
