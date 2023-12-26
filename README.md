@@ -32,8 +32,11 @@ npx nx g @spartan-ng/cli:ui-theme
 npx nx g @spartan-ng/cli:ui button
 npx nx g @spartan-ng/cli:ui label
 npx nx g @spartan-ng/cli:ui input
+npx nx g @spartan-ng/cli:ui
 
 npm i ngx-valdemort
+
+npm i flowbite
 ```
 
 ## Start the app

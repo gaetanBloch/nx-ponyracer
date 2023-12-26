@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
@@ -10,7 +10,13 @@ import {
   HlmRadioGroupDirective,
   HlmRadioIndicatorComponent,
 } from '@spartan-ng/ui-radiogroup-helm';
-import { HlmSmallDirective } from '@spartan-ng/ui-typography-helm';
+import { HlmLargeDirective, HlmSmallDirective } from '@spartan-ng/ui-typography-helm';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ProductService } from './product.service';
+import { AddressModel } from '../address/address.model';
+import { AddressComponent } from '../address/address.component';
+import { BrnCheckboxComponent } from '@spartan-ng/ui-checkbox-brain';
+import { HlmCheckboxCheckIconComponent, HlmCheckboxDirective } from '@spartan-ng/ui-checkbox-helm';
 
 type FormModel = {
   firstName?: string;
@@ -22,6 +28,12 @@ type FormModel = {
     confirmPassword?: string;
   };
   gender: 'male' | 'female' | 'other';
+  productId?: string;
+  addresses: {
+    shippingAddress: AddressModel;
+    billingAddress: AddressModel;
+    shippingSameAsBilling?: boolean;
+  };
 };
 
 @Component({
@@ -39,14 +51,30 @@ type FormModel = {
     HlmRadioDirective,
     HlmRadioGroupDirective,
     HlmSmallDirective,
+    AddressComponent,
+    HlmLargeDirective,
+    BrnCheckboxComponent,
+    HlmCheckboxDirective,
+    HlmCheckboxCheckIconComponent,
   ],
   templateUrl: './simple.component.html',
   styleUrl: './simple.component.scss',
+  providers: [ProductService],
 })
 export class SimpleComponent {
   @ViewChild('form') protected ngForm!: NgForm;
+  private readonly productService = inject(ProductService);
+  public readonly products = toSignal(this.productService.getAll());
   protected formValue: FormModel = {
     passwords: {},
+    addresses: {
+      shippingAddress: {},
+      billingAddress: {},
+    },
     gender: 'male',
   };
+
+  logForm() {
+    console.log(this.ngForm);
+  }
 }
