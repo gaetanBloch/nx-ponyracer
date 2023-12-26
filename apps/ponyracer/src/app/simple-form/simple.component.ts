@@ -13,32 +13,15 @@ import {
 import { HlmLargeDirective, HlmSmallDirective } from '@spartan-ng/ui-typography-helm';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { ProductService } from './product.service';
-import { AddressModel } from '../address/address.model';
 import { AddressComponent } from '../address/address.component';
 import { BrnCheckboxComponent } from '@spartan-ng/ui-checkbox-brain';
 import { HlmCheckboxCheckIconComponent, HlmCheckboxDirective } from '@spartan-ng/ui-checkbox-helm';
 import { FormDirective } from '../directives/form.directive';
 import { LukeService } from '../services/luke.service';
 import { debounceTime, filter, switchMap } from 'rxjs';
-
-type FormModel = Partial<{
-  firstName: string;
-  lastName: string;
-  age: number;
-  emergencyContact: string;
-  passwords: Partial<{
-    password: string;
-    confirmPassword: string;
-  }>;
-  gender: 'male' | 'female' | 'other';
-  genderOther: string;
-  productId: string;
-  addresses: Partial<{
-    shippingAddress: AddressModel;
-    billingAddress: AddressModel;
-    shippingSameAsBilling?: boolean;
-  }>;
-}>;
+import { FormModel } from './form.model';
+import { PhonenumbersComponent } from '../phonenumbers/phonenumbers.component';
+import { AddressModel } from '../address/address.model';
 
 @Component({
   selector: 'angular-monorepo-simple',
@@ -61,6 +44,7 @@ type FormModel = Partial<{
     HlmCheckboxDirective,
     HlmCheckboxCheckIconComponent,
     FormDirective,
+    PhonenumbersComponent,
   ],
   templateUrl: './simple.component.html',
   styleUrl: './simple.component.scss',
@@ -70,6 +54,7 @@ export class SimpleComponent {
   protected readonly formValue = signal<FormModel>({});
   protected readonly formDirty = signal<boolean>(false);
   protected readonly formValid = signal<boolean>(false);
+  protected readonly billingAddress = signal<AddressModel>({});
   private readonly productService = inject(ProductService);
   public readonly products = toSignal(this.productService.getAll());
   private readonly lukeService = inject(LukeService);
@@ -79,6 +64,7 @@ export class SimpleComponent {
       overEighteen: (this.formValue().age || 0) >= 18,
       billingSameAsShipping: this.formValue().addresses?.shippingSameAsBilling,
       genderOther: this.formValue().gender === 'other',
+      billingAddress: this.formValue().addresses?.billingAddress || this.billingAddress(),
     };
   });
 
@@ -125,13 +111,29 @@ export class SimpleComponent {
       },
       { allowSignalWrites: true },
     );
+
+    this.formValue.update(v => ({
+      ...v,
+      phoneNumbers: {
+        addValue: '',
+        '0': '1234567890',
+        '1': '0987654321',
+      },
+    }));
   }
 
   get vm() {
     return this.viewModel();
   }
 
+  setFormValue(value: FormModel) {
+    this.formValue.set(value);
+    if (value.addresses?.billingAddress) {
+      this.billingAddress.set(value.addresses?.billingAddress);
+    }
+  }
+
   logForm() {
-    console.log(this.formValue);
+    console.log(this.vm.formValue);
   }
 }

@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterTdComponent } from './register-td/register-td.component';
 import { SimpleComponent } from './simple-form/simple.component';
+import { PhonenumbersComponent } from './phonenumbers/phonenumbers.component';
 
 export const appRoutes: Route[] = [
   {
@@ -33,8 +34,13 @@ export const appRoutes: Route[] = [
     providers: [],
   },
   {
-    path: 'simple',
+    path: 'td',
     component: SimpleComponent,
+    providers: [],
+  },
+  {
+    path: 'phone',
+    component: PhonenumbersComponent,
     providers: [],
   },
 ];

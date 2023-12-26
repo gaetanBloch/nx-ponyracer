@@ -2,7 +2,7 @@
   #form="ngForm"
   class="flex flex-col gap-3"
   (ngSubmit)="logForm()"
-  (formValueChange)="formValue.set($event)"
+  (formValueChange)="setFormValue($event)"
   (validChange)="formValid.set($event)"
   (dirtyChange)="formDirty.set($event)"
 >
@@ -117,9 +117,12 @@
     @if (!vm.billingSameAsShipping) {
       <div ngModelGroup="billingAddress" class="mt-3">
         <span hlmLarge>Billing Address</span>
-        <angular-monorepo-address [address]="vm.formValue.addresses?.billingAddress" />
+        <angular-monorepo-address [address]="vm.billingAddress" />
       </div>
     }
+    <div ngModelGroup="phonnumbers">
+      <angular-monorepo-phonenumbers [phoneNumbers]="vm.formValue.phoneNumbers?.values!" />
+    </div>
   </div>
   <div class="mt-5 flex justify-center">
     <button hlmBtn variant="outline" type="reset" class="mr-3">Reset</button>
