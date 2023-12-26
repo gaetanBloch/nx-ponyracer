@@ -1,0 +1,25 @@
+<form #registerForm="ngForm">
+  <label hlmLabel>
+    First name
+    <input hlmInput type="text" name="firstName" [(ngModel)]="formValue.firstName" />
+  </label>
+  <label hlmLabel>
+    Login
+    <input hlmInput type="text" name="login" [(ngModel)]="formValue.login" />
+  </label>
+  <div ngModelGroup="passwords">
+    <label hlmLabel>
+      Password
+      <input hlmInput type="password" name="password" [(ngModel)]="formValue.passwords.password" />
+    </label>
+    <label hlmLabel>
+      Confirm password
+      <input
+        hlmInput
+        type="password"
+        name="confirmPassword"
+        [(ngModel)]="formValue.passwords.confirmPassword"
+      />
+    </label>
+  </div>
+</form>

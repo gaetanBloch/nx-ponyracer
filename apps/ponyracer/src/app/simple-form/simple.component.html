@@ -1,0 +1,75 @@
+<form #form="ngForm" class="flex flex-col gap-3">
+  <div>
+    <label hlmLabel>
+      <span>First name</span>
+      <input type="text" [(ngModel)]="formValue.firstName" name="firstName" hlmInput />
+    </label>
+  </div>
+  <div>
+    <label hlmLabel>
+      <span>Last name</span>
+      <input type="text" [(ngModel)]="formValue.lastName" name="lastName" hlmInput />
+    </label>
+  </div>
+  <div>
+    <label hlmLabel>
+      <span>Age</span>
+      <input type="number" [(ngModel)]="formValue.age" name="age" hlmInput />
+    </label>
+  </div>
+  <div>
+    <small hlmSmall class="font-semibold">Gender</small>
+    <brn-radio-group
+      class="mb-4 space-y-1 font-mono text-sm font-medium"
+      hlmRadioGroup
+      name="gender"
+      [(ngModel)]="formValue.gender"
+    >
+      <brn-radio hlmRadio value="male">
+        <hlm-radio-indicator indicator />
+        male
+      </brn-radio>
+      <brn-radio hlm value="female">
+        <hlm-radio-indicator indicator />
+        female
+      </brn-radio>
+      <brn-radio hlm value="other">
+        <hlm-radio-indicator indicator />
+        other
+      </brn-radio>
+    </brn-radio-group>
+  </div>
+  <div>
+    <label hlmLabel>
+      <span>Emergency contact</span>
+      <input
+        type="text"
+        [(ngModel)]="formValue.emergencyContact"
+        name="emergencyContact"
+        hlmInput
+      />
+    </label>
+  </div>
+  <div ngModelGroup="passwords" class="flex flex-col gap-3">
+    <label hlmLabel>
+      Password
+      <input hlmInput type="password" name="password" [(ngModel)]="formValue.passwords.password" />
+    </label>
+    <label hlmLabel>
+      Confirm password
+      <input
+        hlmInput
+        type="password"
+        name="confirmPassword"
+        [(ngModel)]="formValue.passwords.confirmPassword"
+      />
+    </label>
+  </div>
+  <div class="mt-5 flex justify-center">
+    <button hlmBtn variant="outline" type="reset" class="mr-3">Reset</button>
+    <button hlmBtn type="submit">Submit</button>
+  </div>
+</form>
+<pre>
+  {{ formValue | json }}
+</pre>

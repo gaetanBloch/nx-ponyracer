@@ -8,6 +8,7 @@ module.exports = {
   content: [
     join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
     ...createGlobPatternsForDependencies(__dirname),
+    './node_modules/flowbite/**/*.js',
   ],
   theme: {
     extend: {
@@ -34,6 +35,6 @@ module.exports = {
     typography: typographyStyles,
   },
   plugins: [typographyPlugin],
-  presets: [require('@spartan-ng/ui-core/hlm-tailwind-preset')],
+  presets: [require('@spartan-ng/ui-core/hlm-tailwind-preset'), require('flowbite/plugin')],
   darkMode: 'class',
 };
