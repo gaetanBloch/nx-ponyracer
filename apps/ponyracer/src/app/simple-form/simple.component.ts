@@ -22,6 +22,7 @@ import { debounceTime, filter, switchMap } from 'rxjs';
 import { FormModel } from './form.model';
 import { PhonenumbersComponent } from '../phonenumbers/phonenumbers.component';
 import { AddressModel } from '../address/address.model';
+import { purchaseFormValidations } from '../validation/purcharse.validation';
 
 @Component({
   selector: 'angular-monorepo-simple',
@@ -133,7 +134,7 @@ export class SimpleComponent {
     }
   }
 
-  logForm() {
-    console.log(this.vm.formValue);
+  onSubmit() {
+    console.log(purchaseFormValidations(this.formValue(), 'emergencyContact').errors);
   }
 }

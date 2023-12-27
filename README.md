@@ -9,7 +9,7 @@
 
 ```bash
 npx create-nx-workspace@latest geode --preset=angular-monorepo
-nx g @nx/angular:library ui --publishable --import-path=@geode/components
+nx g @nx/angular:library ui --publishable --buildable --import-path=@geode/components
 npx husky-init && npm install
 npm install --save-dev @commitlint/config-conventional @commitlint/cli
 npm install --save-dev prettier@latest prettier-plugin-packagejson  prettier-plugin-tailwindcss rimraf
@@ -20,9 +20,11 @@ npm install commitizen -g
 commitizen init cz-conventional-changelog --save-dev --save-exact
 npm i -D validate-branch-name \
   && npx husky add .husky/pre-push "npx --no-install validate-branch-name"
+
 nx g @nx/angular:setup-tailwind ui
 nx g @nx/angular:setup-tailwind ponyracer
 npm i -D @tailwindcss/typography
+npm i -D @tailwindcss/forms
 
 
 npm i -D @angular/cdk
@@ -35,6 +37,7 @@ npx nx g @spartan-ng/cli:ui input
 npx nx g @spartan-ng/cli:ui
 
 npm i ngx-valdemort
+npm i vest
 
 npm i flowbite
 ```

@@ -1,7 +1,7 @@
 <form
   #form="ngForm"
   class="flex flex-col gap-3"
-  (ngSubmit)="logForm()"
+  (ngSubmit)="onSubmit()"
   (formValueChange)="setFormValue($event)"
   (validChange)="formValid.set($event)"
   (dirtyChange)="formDirty.set($event)"

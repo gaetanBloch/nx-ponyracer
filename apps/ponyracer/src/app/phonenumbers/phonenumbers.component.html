@@ -10,7 +10,9 @@
             [ngModel]="phoneNumbers?.[phone.key]"
             name="{{ phone.key }}"
           />
-          <button hlmBtn (click)="removePhone(phone.key)">Remove number</button>
+          <button hlmBtn (click)="removePhone(phone.key)" variant="destructive">
+            Remove number
+          </button>
         </div>
       }
     </div>
