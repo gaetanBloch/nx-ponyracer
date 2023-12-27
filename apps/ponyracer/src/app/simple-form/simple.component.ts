@@ -17,7 +17,7 @@ import { BrnCheckboxComponent } from '@spartan-ng/ui-checkbox-brain';
 import { HlmCheckboxCheckIconComponent, HlmCheckboxDirective } from '@spartan-ng/ui-checkbox-helm';
 import { FormDirective } from '../directives/form.directive';
 import { LukeService } from '../services/luke.service';
-import { debounceTime, filter, switchMap } from 'rxjs';
+import { debounceTime, filter, switchMap, tap } from 'rxjs';
 import { FormModel, formShape } from './form.model';
 import { PhonenumbersComponent } from '../phonenumbers/phonenumbers.component';
 import { AddressModel } from '../address/address.model';
@@ -52,6 +52,7 @@ import { validateShape } from '../utils/shape-validations';
   providers: [ProductService, FormDirective],
 })
 export class SimpleComponent {
+  protected readonly loading = signal<boolean>(false);
   protected readonly formValue = signal<FormModel>({});
   protected readonly formDirty = signal<boolean>(false);
   protected readonly formValid = signal<boolean>(false);
@@ -67,6 +68,7 @@ export class SimpleComponent {
       billingSameAsShipping: this.formValue().addresses?.shippingSameAsBilling,
       genderOther: this.formValue().gender === 'other',
       billingAddress: this.formValue().addresses?.billingAddress || this.billingAddress(),
+      loading: this.loading(),
     };
   });
 
@@ -101,11 +103,13 @@ export class SimpleComponent {
       toObservable(firstName).pipe(
         debounceTime(500),
         filter(v => v === 'Luke'),
+        tap(() => this.loading.set(true)),
         switchMap(() => this.lukeService.getLuke()),
       ),
     );
     effect(
       () => {
+        this.loading.set(false);
         this.formValue.update(v => ({
           ...v,
           ...luke(),
@@ -138,5 +142,16 @@ export class SimpleComponent {
 
   onSubmit() {
     console.log(purchaseFormValidations(this.formValue(), 'emergencyContact').errors);
+  }
+
+  fetchLuke() {
+    this.loading.set(true);
+    this.lukeService.getLuke().subscribe(luke => {
+      this.formValue.update(v => ({
+        ...v,
+        ...luke,
+      }));
+      this.loading.set(false);
+    });
   }
 }
