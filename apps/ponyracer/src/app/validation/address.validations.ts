@@ -8,7 +8,7 @@ export function addressValidations(model: AddressModel | undefined, field: strin
   test(`${field}.city`, 'City is required', () => {
     enforce(model?.city).isNotBlank();
   });
-  test(`${field}.zipCode`, 'Zipcode is required', () => {
+  test(`${field}.zipcode`, 'Zipcode is required', () => {
     enforce(model?.zipcode).isNotBlank();
   });
   test(`${field}.number`, 'Number is required', () => {

@@ -1,6 +1,5 @@
 import { Component, computed, effect, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
@@ -23,13 +22,13 @@ import { FormModel } from './form.model';
 import { PhonenumbersComponent } from '../phonenumbers/phonenumbers.component';
 import { AddressModel } from '../address/address.model';
 import { purchaseFormValidations } from '../validation/purcharse.validation';
+import { templateDrivenForms } from '../utils/template-driven.forms';
 
 @Component({
   selector: 'angular-monorepo-simple',
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule,
     HlmInputDirective,
     HlmLabelDirective,
     HlmButtonDirective,
@@ -39,12 +38,12 @@ import { purchaseFormValidations } from '../validation/purcharse.validation';
     HlmRadioDirective,
     HlmRadioGroupDirective,
     HlmSmallDirective,
-    AddressComponent,
     HlmLargeDirective,
     BrnCheckboxComponent,
     HlmCheckboxDirective,
     HlmCheckboxCheckIconComponent,
-    FormDirective,
+    templateDrivenForms,
+    AddressComponent,
     PhonenumbersComponent,
   ],
   templateUrl: './simple.component.html',
@@ -55,6 +54,7 @@ export class SimpleComponent {
   protected readonly formValue = signal<FormModel>({});
   protected readonly formDirty = signal<boolean>(false);
   protected readonly formValid = signal<boolean>(false);
+  protected readonly suite = purchaseFormValidations;
   protected readonly billingAddress = signal<AddressModel>({});
   private readonly productService = inject(ProductService);
   public readonly products = toSignal(this.productService.getAll());
@@ -115,7 +115,7 @@ export class SimpleComponent {
 
     this.formValue.update(v => ({
       ...v,
-      phoneNumbers: {
+      phonenumbers: {
         addValue: '',
         '0': '1234567890',
         '1': '0987654321',

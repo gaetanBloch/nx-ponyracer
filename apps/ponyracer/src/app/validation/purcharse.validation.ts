@@ -75,5 +75,5 @@ export const purchaseFormValidations = create((model: FormModel, field: string) 
     });
   });
 
-  phonenumberValidations(model.phoneNumbers, 'phoneNumbers');
+  phonenumberValidations(model?.phonenumbers, 'phonenumbers');
 });

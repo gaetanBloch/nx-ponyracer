@@ -18,5 +18,5 @@ export type FormModel = Partial<{
     billingAddress: AddressModel;
     shippingSameAsBilling: boolean;
   }>;
-  phoneNumbers: PhonenumberModel;
+  phonenumbers: PhonenumberModel;
 }>;

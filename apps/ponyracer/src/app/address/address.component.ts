@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { AddressModel } from './address.model';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { templateDrivenFormsViewProviders } from '../simple-form/template-driven.forms';
+import {
+  templateDrivenForms,
+  templateDrivenFormsViewProviders,
+} from '../utils/template-driven.forms';
 
 @Component({
   selector: 'angular-monorepo-address',
   standalone: true,
-  imports: [CommonModule, HlmInputDirective, HlmLabelDirective, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, HlmInputDirective, HlmLabelDirective, templateDrivenForms],
   viewProviders: [templateDrivenFormsViewProviders],
   templateUrl: './address.component.html',
   styleUrl: './address.component.scss',

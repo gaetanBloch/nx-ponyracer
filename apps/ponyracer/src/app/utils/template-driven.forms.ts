@@ -1,5 +1,9 @@
 import { Optional, Provider } from '@angular/core';
-import { ControlContainer, NgForm, NgModelGroup } from '@angular/forms';
+import { ControlContainer, FormsModule, NgForm, NgModelGroup } from '@angular/forms';
+import { FormDirective } from '../directives/form.directive';
+import { FormModelDirective } from '../directives/form-model.directive';
+import { FormModelGroupDirective } from '../directives/form-model-group.directive';
+import { ControlWrapperComponent } from '../control-wrapper/control-wrapper.component';
 
 /**
  * This is borrowed from  [https://github.com/wardbell/ngc-validate/blob/main/src/app/core/form-container-view-provider.ts](https://github.com/wardbell/ngc-validate/blob/main/src/app/core/form-container-view-provider.ts)
@@ -50,4 +54,12 @@ export function _formViewProviderFactory(ngForm: NgForm, ngModelGroup: NgModelGr
 export const templateDrivenFormsViewProviders = [
   { provide: ControlContainer, useExisting: NgForm },
   formViewProvider, // very important if we want nested components with ngModelGroup
+];
+
+export const templateDrivenForms = [
+  FormDirective,
+  FormsModule,
+  FormModelDirective,
+  FormModelGroupDirective,
+  ControlWrapperComponent,
 ];

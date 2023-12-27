@@ -40,6 +40,8 @@ npm i ngx-valdemort
 npm i vest
 
 npm i flowbite
+npm i lodash
+npm i -D @types/lodash
 ```
 
 ## Start the app

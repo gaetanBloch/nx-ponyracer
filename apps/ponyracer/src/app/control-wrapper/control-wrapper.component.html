@@ -1,0 +1,19 @@
+<div class="input-wrapper__content">
+  <ng-content></ng-content>
+</div>
+<div class="input-wrapper__errors text-destructive mt-2 font-bold">
+  @if (!ngModelGroup && ngModel?.control?.errors && ngModel?.control?.touched) {
+    <ul>
+      @for (error of controlErrors(); track error) {
+        <li>{{ error }}</li>
+      }
+    </ul>
+  }
+  @if (ngModelGroup?.control?.errors && ngModelGroup?.control?.touched) {
+    <ul>
+      @for (error of groupErrors(); track error) {
+        <li>{{ error }}</li>
+      }
+    </ul>
+  }
+</div>

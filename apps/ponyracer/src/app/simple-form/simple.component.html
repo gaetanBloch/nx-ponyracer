@@ -2,32 +2,38 @@
   #form="ngForm"
   class="flex flex-col gap-3"
   (ngSubmit)="onSubmit()"
+  [formValue]="formValue()"
+  [suite]="suite"
   (formValueChange)="setFormValue($event)"
   (validChange)="formValid.set($event)"
   (dirtyChange)="formDirty.set($event)"
+  alwaysValidate="true"
 >
   Form is valid: {{ formValid() }}
   <br />
   Form is dirty: {{ formDirty() }}
-  <div>
+  <div angular-monorepo-control-wrapper>
     <label hlmLabel>
       <span>First name</span>
       <input type="text" [ngModel]="vm.formValue.firstName" name="firstName" hlmInput />
     </label>
   </div>
-  <div>
+  <div angular-monorepo-control-wrapper>
     <label hlmLabel>
       <span>Last name</span>
       <input type="text" [ngModel]="vm.formValue.lastName" name="lastName" hlmInput />
     </label>
   </div>
-  <div>
+  <div angular-monorepo-control-wrapper>
     <label hlmLabel>
       <span>Age</span>
       <input type="number" [ngModel]="vm.formValue.age" name="age" hlmInput />
     </label>
   </div>
-  <div>
+  <div ngModelGroup="phonenumbers" angular-monorepo-control-wrapper>
+    <angular-monorepo-phonenumbers [phonenumbers]="vm.formValue.phonenumbers?.values!" />
+  </div>
+  <div angular-monorepo-control-wrapper>
     <small hlmSmall class="font-semibold">Gender</small>
     <brn-radio-group
       class="mb-4 space-y-1 font-mono text-sm font-medium"
@@ -50,14 +56,14 @@
     </brn-radio-group>
   </div>
   @if (vm.genderOther) {
-    <div>
+    <div angular-monorepo-control-wrapper>
       <label hlmLabel>
         <span>Other gender</span>
         <input type="text" [ngModel]="vm.formValue.genderOther" name="genderOther" hlmInput />
       </label>
     </div>
   }
-  <div>
+  <div angular-monorepo-control-wrapper>
     <label hlmLabel>
       <span>Products</span>
       <select hlmInput class="w-56" name="productId" [ngModel]="vm.formValue.productId">
@@ -67,7 +73,7 @@
       </select>
     </label>
   </div>
-  <div>
+  <div angular-monorepo-control-wrapper>
     <label hlmLabel>
       <span>Emergency contact</span>
       <input
@@ -79,28 +85,32 @@
       />
     </label>
   </div>
-  <div ngModelGroup="passwords" class="flex flex-col gap-3">
-    <label hlmLabel>
-      Password
-      <input
-        hlmInput
-        type="password"
-        name="password"
-        [ngModel]="vm.formValue.passwords?.password"
-      />
-    </label>
-    <label hlmLabel>
-      Confirm password
-      <input
-        hlmInput
-        type="password"
-        name="confirmPassword"
-        [ngModel]="vm.formValue.passwords?.confirmPassword"
-      />
-    </label>
+  <div ngModelGroup="passwords" class="flex flex-col gap-3" angular-monorepo-control-wrapper>
+    <div angular-monorepo-control-wrapper>
+      <label hlmLabel>
+        Password
+        <input
+          hlmInput
+          type="password"
+          name="password"
+          [ngModel]="vm.formValue.passwords?.password"
+        />
+      </label>
+    </div>
+    <div angular-monorepo-control-wrapper>
+      <label hlmLabel>
+        Confirm password
+        <input
+          hlmInput
+          type="password"
+          name="confirmPassword"
+          [ngModel]="vm.formValue.passwords?.confirmPassword"
+        />
+      </label>
+    </div>
   </div>
-  <div ngModelGroup="addresses">
-    <div ngModelGroup="shippingAddress">
+  <div ngModelGroup="addresses" angular-monorepo-control-wrapper>
+    <div ngModelGroup="shippingAddress" angular-monorepo-control-wrapper>
       <span hlmLarge>Shipping Address</span>
       <angular-monorepo-address [address]="vm.formValue.addresses?.shippingAddress" />
     </div>
@@ -115,14 +125,11 @@
       <span hlmSmall class="ml-2">Billing Address same as Shipping Address ?</span>
     </label>
     @if (!vm.billingSameAsShipping) {
-      <div ngModelGroup="billingAddress" class="mt-3">
+      <div ngModelGroup="billingAddress" class="mt-3" angular-monorepo-control-wrapper>
         <span hlmLarge>Billing Address</span>
         <angular-monorepo-address [address]="vm.billingAddress" />
       </div>
     }
-    <div ngModelGroup="phonnumbers">
-      <angular-monorepo-phonenumbers [phoneNumbers]="vm.formValue.phoneNumbers?.values!" />
-    </div>
   </div>
   <div class="mt-5 flex justify-center">
     <button hlmBtn variant="outline" type="reset" class="mr-3">Reset</button>
