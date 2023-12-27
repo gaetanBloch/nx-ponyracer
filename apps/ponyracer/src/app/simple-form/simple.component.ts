@@ -18,11 +18,12 @@ import { HlmCheckboxCheckIconComponent, HlmCheckboxDirective } from '@spartan-ng
 import { FormDirective } from '../directives/form.directive';
 import { LukeService } from '../services/luke.service';
 import { debounceTime, filter, switchMap } from 'rxjs';
-import { FormModel } from './form.model';
+import { FormModel, formShape } from './form.model';
 import { PhonenumbersComponent } from '../phonenumbers/phonenumbers.component';
 import { AddressModel } from '../address/address.model';
 import { purchaseFormValidations } from '../validation/purcharse.validation';
 import { templateDrivenForms } from '../utils/template-driven.forms';
+import { validateShape } from '../utils/shape-validations';
 
 @Component({
   selector: 'angular-monorepo-simple',
@@ -129,6 +130,7 @@ export class SimpleComponent {
 
   setFormValue(value: FormModel) {
     this.formValue.set(value);
+    validateShape(value, formShape);
     if (value.addresses?.billingAddress) {
       this.billingAddress.set(value.addresses?.billingAddress);
     }

@@ -51,11 +51,57 @@ export function _formViewProviderFactory(ngForm: NgForm, ngModelGroup: NgModelGr
   return ngModelGroup || ngForm || null;
 }
 
+/**
+ * Variable: templateDrivenFormsViewProviders
+ *
+ * Description:
+ * This variable is an array of view providers used for template-driven forms in Angular.
+ * It is used to provide necessary dependencies for template-driven forms.
+ *
+ * Elements:
+ * Each element in the array is an object with the following properties:
+ * - provide: Specifies the dependency injection token for a specific provider.
+ * - useExisting: Specifies the existing instance of the provider to be used for injection.
+ *
+ * Usage:
+ * This variable is typically used in the providers section of an Angular component's metadata.
+ * By including these providers in the component's metadata, the Angular injector will be able
+ * to resolve and inject the required dependencies when the component is instantiated.
+ *
+ * Example Usage:
+ * ```typescript
+ * import { Component } from '@angular/core';
+ * import { ControlContainer, NgForm } from '@angular/forms';
+ * import { formViewProvider } from './form-view.provider';
+ *
+ * @Component({
+ *   selector: 'app-my-component',
+ *   template: `
+ *     <!-- Template-driven form markup -->
+ *   `,
+ *   providers: [templateDrivenFormsViewProviders]
+ * })
+ * export class MyComponent {
+ *   // Component implementation...
+ * }
+ * ```
+ */
 export const templateDrivenFormsViewProviders = [
   { provide: ControlContainer, useExisting: NgForm },
   formViewProvider, // very important if we want nested components with ngModelGroup
 ];
 
+/**
+ * Represents the template-driven forms used in an application.
+ *
+ * @type {Array}
+ * @name templateDrivenForms
+ * @property {FormDirective} 0 - The directive used to create forms.
+ * @property {FormsModule} 1 - The module that imports the necessary dependencies for template-driven forms.
+ * @property {FormModelDirective} 2 - The directive used to create form models.
+ * @property {FormModelGroupDirective} 3 - The directive used to create form model groups.
+ * @property {ControlWrapperComponent} 4 - The component used to wrap form controls.
+ */
 export const templateDrivenForms = [
   FormDirective,
   FormsModule,
@@ -63,3 +109,12 @@ export const templateDrivenForms = [
   FormModelGroupDirective,
   ControlWrapperComponent,
 ];
+
+/**
+ * Represents a type that makes all properties of a given object type required recursively.
+ *
+ * @template T - The object type to make all properties required recursively.
+ */
+export type DeepRequired<T> = {
+  [K in keyof T]-?: T[K] extends object ? DeepRequired<T[K]> : T[K];
+};
