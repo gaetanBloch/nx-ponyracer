@@ -39,7 +39,9 @@ export class PhonenumbersComponent {
   @Input({ required: true }) public phonenumbers: Record<string, string> = {};
   protected addValue = '';
 
-  add() {
+  add($event: MouseEvent) {
+    $event.preventDefault();
+    $event.stopPropagation();
     const phonenumbers = [...Object.values(this.phonenumbers || {}), this.addValue];
     this.phonenumbers = arrayToRecord(phonenumbers);
     this.addValue = '';

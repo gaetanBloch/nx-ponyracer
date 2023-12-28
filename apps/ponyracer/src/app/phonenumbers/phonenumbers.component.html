@@ -21,7 +21,7 @@
     <div angular-monorepo-control-wrapper>
       <div class="mt-3 flex gap-2">
         <input hlmInput type="text" [(ngModel)]="addValue" name="addValue" />
-        <button hlmBtn (click)="add()">Add</button>
+        <button hlmBtn (click)="add($event)" role="button">Add</button>
       </div>
     </div>
   </div>

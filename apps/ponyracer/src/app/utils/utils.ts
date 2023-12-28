@@ -15,7 +15,9 @@ function getControlPath(
   controlName: string,
   control: AbstractControl,
 ): string {
-  for (const key in Object.keys(rootForm.controls)) {
+  const keys = Object.keys(rootForm.controls);
+  for (let i = 0, l = keys.length; i < l; i++) {
+    const key = keys[i];
     const ctrl = rootForm.get(key);
     if (ctrl instanceof FormGroup) {
       const path = getControlPath(ctrl, controlName, control);
@@ -28,7 +30,6 @@ function getControlPath(
   }
   return '';
 }
-
 /**
  * Returns the path to a control within a form group.
  *
@@ -39,7 +40,9 @@ function getControlPath(
  * @returns {string} The path to the control within the form group.
  */
 function getGroupPath(formGroup: FormGroup, controlName: string, control: AbstractControl): string {
-  for (const key in Object.keys(formGroup.controls)) {
+  const keys = Object.keys(formGroup.controls);
+  for (let i = 0, l = keys.length; i < l; i++) {
+    const key = keys[i];
     const ctrl = formGroup.get(key);
     if (ctrl instanceof FormGroup) {
       const path = getControlPath(ctrl, controlName, control);
